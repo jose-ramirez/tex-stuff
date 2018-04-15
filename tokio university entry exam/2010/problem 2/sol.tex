@@ -1,0 +1,108 @@
+\documentclass{article}
+\usepackage{amsmath,amssymb,amsfonts,latexsym,cancel}
+\begin{document}
+	Now, for the solution, let's evaluate the integral:
+	%para ajustar el tamaño de los delimitadores a la
+	%formula se usan  los comandos \left y \right.
+
+	$$
+		\int_0^1 \frac{1-x}{k+x}\,dx=
+		\int_0^1 \frac{1}{k+x}\,dx-
+		\int_0^1 \frac{x}{k+x}\,dx=
+	$$
+
+	$$
+		\ln(k+x)|_0^1-\left(x\ln(k+x)|_0^1-
+		\int_0^1 \ln(k+x)\,dx\right)=
+	$$
+
+	$$
+		\ln\left(\frac{k+1}{k}\right)-\ln(k+1)+\int_0^1 \ln(k+x)\,dx=
+	$$
+
+	$$
+		\ln\left(\frac{1}{k}\right)+[(k+x)\ln(k+x)-(k+x)]_0^1=
+	$$
+
+	$$
+		\ln\left(\frac{1}{k}\right)+(k+1)\ln(k+1)-(k+1)-(k\ln(k)-k)=
+	$$
+
+	$$
+		(k+1)\ln\left(\frac{k+1}{k}\right)-1.
+	$$
+
+	%hace falta numerar bien las ecuaciones para que se vea bonito, xD:
+	Hence:
+	$$
+		\int_0^1 \frac{1-x}{k+x}\,dx=(k+1)\ln\left(\frac{k+1}{k}\right)-1.
+	$$
+
+	So, the chain of inequalities is reduced to the following:
+	$$
+		\frac{1}{2(k+1)}<(k+1)\ln\left(\frac{k+1}{k}\right)-1<\frac{1}{2k}.
+	$$
+	To solve them, we refer to the well known formula:
+	$$
+		\ln(x)=2\sum_{n=1}^{\infty}\frac{1}{2n-1}\left(\frac{x-1}						{x+1}\right)^{2n-1}, x>0
+	$$
+	and set $\displaystyle x=\frac{k+1}{k}$, obtaining:
+	$$
+		\ln\left(\frac{k+1}{k}\right)=
+		2\sum_{n=1}^{\infty}\frac{1}{2n-1}\left(\frac{1}{2k+1}\right)^{2n-1}
+	$$
+	In particular: 
+	$$
+		\ln\left(\frac{k+1}{k}\right)>\frac{2}{2k+1};
+	$$
+	therefore, the left inequality will be proved if the following holds:
+	$$
+		\frac{1}{2(k+1)}<(k+1)\frac{2}{2k+1}-1,
+	$$
+	which after some manipulation becomes
+	$$
+		4(k+1)^2>(2k+1)(2k+3),
+	$$
+	which is true.
+
+	For the right inequality, after some algebraic manipulation,
+	the inequality reduces to
+	$$
+		\ln\left(\frac{k+1}{k}\right)<\frac{1}{2}\left(\frac{1}{k}+\frac{1}				{k+1} \right),
+	$$
+	and to prove it, we make the substitution:
+	$\displaystyle \frac{k+1}{k}=\frac{1}{1-x};$
+	and so $x=\frac{1}{k+1}<1$ and $\frac{1}{k}=\frac{x}{1-x}.\;					$
+	Hence, using the following formulae:
+	$$
+		\ln\left(\frac{1}{1-x}\right)=\sum_{n>0}^{\infty}\frac{x^n}{n}, x<1
+	$$
+	$$
+		\frac{1}{1-x}=\sum_{n>0}^{\infty}x^n, x<1
+	$$
+	our inequality becomes
+	$$
+		\sum_{n>0}^{\infty}\frac{x^n}{n}<\frac{1}{2}\left(x+\frac{x}{1-					x}\right)=x+\frac{1}{2}\sum_{n>1}^{\infty}x^n
+	$$
+	or equivalently:
+	$$
+		\sum_{n>2}^{\infty}\frac{x^n}{n}<\sum_{n>2}^{\infty}\frac{x^n}{2},
+	$$
+	which is clearly true.
+
+	Now, for the second part of the problem, we rewrite the inequality 				chain, like this:
+	$$
+		\frac{1}{2(k+1)^2}<\ln\left(\frac{k+1}{k}\right)-\frac{1}						{k+1}<\frac{1}{2}\frac{1}{k(k+1)}=\frac{1}{2}\left(\frac{1}						{k}-\frac{1}{k+1}\right)
+	$$
+	and we rewrite the left side, using the fact that
+	$$
+		\frac{1}{2}\left(\frac{1}{k+1}-\frac{1}{k+2}\right)=\frac{1}{2(k+1)				(k+2)}<\frac{1}{2(k+1)^2}
+	$$
+	obtaining:
+	$$
+		\frac{1}{2}\left(\frac{1}{k+1}-\frac{1}											{k+2}\right)<\ln\left(\frac{k+1}{k}\right)-\frac{1}{k+1}<\frac{1}{2}
+		\left(\frac{1}{k}-\frac{1}{k+1}\right)
+	$$
+
+	All that's left is to sum all of the chains from $k=n$ to $k=m-1$, 				yielding the desired result.
+\end{document}

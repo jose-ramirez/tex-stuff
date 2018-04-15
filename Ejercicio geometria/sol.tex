@@ -1,0 +1,27 @@
+\documentclass[12pt,letterpaper,draft,oneside,onecolumn,titlepage]{article}
+\usepackage[latin1]{inputenc}
+\usepackage{amsmath}
+\usepackage{amsfonts}
+\usepackage{amssymb}
+\author{Jose Ramirez}
+\title{Problemas}
+\begin{document}
+	\begin{quotation}
+		Let ABC be a triangle with $AB=AC$, and let $I$  be its incentre. The following
+		holds: $BC=AB+AI$. Find all the possible values of $\angle BAC$.	
+	\end{quotation}
+	\begin{quotation}
+		Using the usual notation, by the Briggs formula, we have:
+		$$\sin \angle \frac{BAC}{2}=\sqrt{\frac{(p-b)(p-c)}{bc}} $$
+		$$\Rightarrow \sin \angle \frac{BAC}{2}=\frac{(p-c)}{c}.$$
+
+		hence $$AI=\frac{r}{\sin \angle \frac{BAC}{2}} \Rightarrow r=\frac{(a-c)(p-c)}{c}.$$
+
+		Also, $$ r^2 = AI^2 - (p-a)^2 = (a-c)^2 - (p-a)^2 = \frac{3a^2}{4} - ac.$$
+
+		This implies 	$$\left(\frac{(a-c)(p-c)}{c}\right)^2 = r^2 = \frac{3a^2}{4} - ac$$ 
+						$$\Rightarrow 2(ac)^2 - 4ac^3 + 2ca^3 - a^4 = 0$$
+						$$ \Rightarrow a(a-2c)(a^2-2c^2) = 0.$$
+		Since $a\not=0$ and $a<2c$, we must have $a^2=2c^2$, therefore $\angle BAC=90$.
+	\end{quotation}
+\end{document}
