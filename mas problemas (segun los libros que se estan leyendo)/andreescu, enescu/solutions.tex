@@ -1,0 +1,87 @@
+\documentclass[12pt]{minimal}
+\usepackage{mathtools}
+\DeclarePairedDelimiter\ceil{\lceil}{\rceil}
+\DeclarePairedDelimiter\floor{\lfloor}{\rfloor}
+\DeclarePairedDelimiter\parens{(}{)}
+\begin{document}
+
+Algebra:
+
+1.5 From the identity $x^3 + y^3 + z^3 - 3xyz = (x + y + z)(\frac{1}{2}(
+    (x - y)^2 + (y - z)^2 + (x - z)^2))$ and the given conditions we obtain:
+    $x^3 + y^3 + z^3 = 3xyz + (x + y + z)(\frac{1}{2}(xyz)) = \frac{xyz}{2}
+    (x + y + z + 6)$, which proves the claim.
+
+1.6 Denoting $x = \sqrt[3]{a - b}$, $y = \sqrt[3]{b - c}$, $z = \sqrt[3]{c - a}$,
+    it holds that $x + y + z = 0$, which implies $x^3 + y^3 + z^3 = 3xyz$, i.e.,
+    $0 = (a - b) + (b - c) + (c - a) = 3\sqrt[3]{(a - b)(b - c)(c - a)}$, which
+    is impossible since the right hand side cannot be zero by hypothesis.
+
+Cauchy-Schwarz revisited.
+
+    We have
+    \begin{align*}
+	\frac{x}{ay + bz} + \frac{y}{az + bx} + \frac{z}{ax + by} =
+    & \frac{x^2}{axy + bxz} + \frac{y^2}{ayz + bxy} + \frac{z^2}{axz + byz} \geq \\
+    & \frac{(x + y + z)^2}{(a + b)(xy + yz + xz)}, \\
+    \end{align*}
+    but $(x + y + z)^2 \geq 3(xy + yz + xz)$, implying
+    $$\frac{x}{ay + bz} + \frac{y}{az + bx} + \frac{z}{ax + by} \geq \frac{3}{a + b}.$$
+
+    Now, for this one we have:
+    \begin{align*}
+	  \frac{a^2 + b^2}{a + b} + \frac{b^2 + c^2}{b + c} + \frac{a^2 + c^2}{a + c} =
+    & \left(\frac{a^2}{a + b} + \frac{b^2}{b + c} + \frac{c^2}{a + c}\right) + \\
+    & \left(\frac{b^2}{a + b} + \frac{c^2}{b + c} + \frac{a^2}{a + c} \right) \geq \\
+    & \frac{(a + b + c)^2}{2(a + b + c)} + \frac{(a + b + c)^2}{2(a + b + c)} = \\
+    & \frac{a + b + c}{2} + \frac{a + b + c}{2} = a + b + c.
+    \end{align*}
+
+    Another way of solving it is by noting that $2(a^2 + b^2) \geq (a + b)^2$,
+    so $\frac{a^2 + b^2}{a + b} \geq \frac{a + b}{2}$; applying this inequality
+    to the pairs $(b, c)$ and $(a, c)$, and summing up, we get the result.
+
+    We have:
+    \begin{align*}
+        \frac{1}{c^3(a + b)} + \frac{1}{a^3(b + c)} + \frac{1}{b^3(a + c)} = 
+        & \frac{1}{c^2(ac + bc)} + \frac{1}{a^2(ab + ac)} + \frac{1}{b^2(ab + bc)} \geq \\
+        & \frac{(\frac{1}{a} + \frac{1}{b} + \frac{1}{c})^2}{2(ab + bc + ac)} = 
+        \frac{(ab + bc + ac)^2}{2(ab + bc + ac)} = \frac{ab + bc + ca}{2} \geq \\
+        & \frac{3\sqrt[3]{(abc)^2}}{2} = \frac{3}{2}.
+    \end{align*}
+
+    For this one, we set $a = x + y$, $b = x + z$, and $c = y + z$, therefore,
+    $x = \frac{a + b - c}{2}$, $y = \frac{a + c - b}{2}$, $z = \frac{b + c - a}{2}$.
+    So, after applying the proper transformations, we have to prove that
+    $\frac{1}{4}\left(\frac{(a + b - c)^2}{ab} + \frac{(a + c - b)^2}{ac} +
+    \frac{(b + c - a)^2}{bc}\right) \geq \frac{3}{4}$, which can be easily proved
+    through the lemma:
+    $$\frac{1}{4}\left(\frac{(a + b - c)^2}{ab} + \frac{(a + c - b)^2}{ac} +
+    \frac{(b + c - a)^2}{bc}\right) \geq
+    \frac{1}{4}\left( \frac{(a + b + c)^2}{ab + bc + ac}\right) \geq \frac{3}{4},$$
+    as claimed.
+
+    For this one, we have:
+    \begin{align*}
+        \frac{a}{a^2 - bc + 1} + \frac{b}{b^2 - ac + 1} + \frac{c}{c^2 -ab + 1} = \\
+        & \frac{a^2}{a^3 - abc + a} + \frac{b^2}{b^3 - abc + b} + \frac{c^2}{c^3 - abc + c} \geq \\
+        & \frac{(a + b + c)^2}{a^3 + b^3 + c^3 - 3abc + a + b + c} = \\
+        & \frac{(a + b + c)^2}{(a + b + c)(a^2 + b^2 + c^2 - ab - bc - ac + 1)} = \\
+        & \frac{a + b + c}{a^2 + b^2 + c^2 - ab - bc - ac + 1} = \\
+        & \frac{a + b + c}{a^2 + b^2 + c^2 - ab - bc - ac + 3(ab + bc + ca)} = \\
+        & \frac{a + b + c}{a^2 + b^2 + c^2 + 2(ab + bc + ca)} = \\
+        & \frac{a + b + c}{(a + b + c)^2} = \frac{1}{a + b + c},
+    \end{align*}
+    as claimed.
+
+    Thanks to bel.jad5 (colocar como un enlace) for helping me finish the solution!
+    Now, for this one we have initially, by Holders inequality:
+    $(\sum_{cyc}(\frac{a}{\sqrt{a + b}}))^2(\sum_{cyc}a(a + b)) \geq (\sum_{cyc}a)^3$,
+    so, we only need to prove that
+    $\frac{(a + b + c)^3}{\sum_{cyc}a(a + b)} \geq \frac{9}{2}$,
+    which is easily proved by letting $p = a + b + c$, $q = ab + bc + ca$, and noting that
+    \begin{align*}
+    	(a + b + c)^3 - \frac{9}{2}(a^2 + b^2 + c^2 + ab+ bc+ ca) = p^3 - \frac{9}{2}(p^2 - q) \geq \\
+		p^3 - \frac{9}{2}(p^2 - 3) = \frac{1}{2}(p - 3)^2(2p + 3) \geq 0.
+    \end{align*}
+\end{document}

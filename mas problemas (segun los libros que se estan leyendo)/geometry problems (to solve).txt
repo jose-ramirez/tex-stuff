@@ -1,0 +1,11 @@
+Let  ABC be a triangle such that angle C is acute. AG is altitude which
+intersects the circumcircle of ABC at point E Points M, F are on lines AC and AB
+such that EM and EF are perpendicular to AC and AB respectively. Prove that
+FB * AE >  GM * ME if AE = AB.
+
+Let ABC a triangle and M \in (BC) Let a= \angle BAM and b= \angle CAM Prove that: 
+AM \le \dfrac{sin b}{sin a+sin b} AB+ \dfrac{sin a}{sin a+ sin b} AC.
+
+In \triangle ABC, the length of altitude AD is 12, and the bisector AE of \angle
+A is 13. Denote by m the length of median AF. Find the range of m when \angle A
+is acute, orthogonal and obtuse respectively.

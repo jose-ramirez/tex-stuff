@@ -1,0 +1,27 @@
+\documentclass{article}
+\usepackage{amsmath, amssymb}
+
+\begin{document}
+Let 
+\begin{equation}
+	f(m) = \sum_{k} \binom{2n + 1}{2k}\binom{m + k}{2n}.
+\end{equation}
+
+If we sum over m, we get:
+\begin{eqnarray}
+F(x) = \sum_{m}f(m) x^{m} = \sum_{m}\left(\sum_{k} \binom{2n + 1}{2k}\binom{m + k}{2n}\right) x^{m} = \nonumber\\
+\sum_{k} \binom{2n + 1}{2k} \left(\sum_{m}\binom{m + k}{2n} x^{m}\right) = \nonumber\\
+\frac{x^{2n}}{(1 - x)^{2n + 1}} \sum_{k}\binom{2n + 1}{2k}x^{-k}.
+\end{eqnarray}
+
+Now, let $x = y^{2}$, so $[x^{m}]F(x) = [y^{2m}]F(y)$. Let's find $F(y^2)$:
+
+\begin{eqnarray}
+F(y^2) = \frac{y^{4n}}{(1 - y^2)^{2n + 1}} \sum_{k} \binom{2n + 1}{2k}y^{-2k} = \nonumber\\
+\frac{y^{4n}}{2(1 - y^2)^{2n + 1}}\left( \left(1 + \frac{1}{y}\right)^{2n + 1} + \left(1 - \frac{1}{y}\right)^{2n + 1} \right) = \nonumber\\
+\frac{y^{4n}}{2(1 - y^2)^{2n + 1}}\left(\frac{(1 + y)^{2n + 1}}{y^{2n + 1}} - \frac{(1 - y)^{2n + 1})}{y^{2n + 1}} \right) = \nonumber\\
+\frac{1}{2y}\left(\frac{y^{2n}}{(1 - y)^{2n + 1}} - \frac{y^{2n}}{(1 + y)^{2n + 1}}\right).
+\end{eqnarray}
+
+So, $[x^{m}]F(x) = [y^{2m}]F(y^2) = \frac{1}{2}\left( \binom{2m + 1}{2n} - (-1)^{2m + 1}\binom{2m + 1}{2n} \right) = \binom{2m + 1}{2n}.$
+\end{document}

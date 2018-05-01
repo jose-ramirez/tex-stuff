@@ -1,0 +1,47 @@
+\documentclass[12pt]{minimal}
+\begin{document}
+Invariants:
+
+1.  Let $S_i$ be the sum of all the reaining integers in the list after the ith
+    step; so, $S_0$ is the initial sum of all of them: $S_0 = 2n(4n - 1)$. The
+    process keeps the parity of $S$ invariant. To prove it, suppose we choose
+    $a$ and $b$ at the jth step. So, $S_{j + 1} = S_j - 2b$, assuming we
+    substitute $a$ and $b$ with $a - b$, otherwise it would be $S_{j + 1} = S_j
+    - 2a$. This shows that the parity of $S$ remains invariant to the last
+    number, so, the last one will be an even one, as $S_0$ is.
+
+10. Let $f(x_1, ..., x_n) = \sum{(x_i^2 - x_{i + 1}^2)}$, $x_{n + 1} = x_1$. Suppose
+    we choose $x_1, x_2, x_3, x_4$ at a step, and switch $x_2$ and $x_3$. So,
+    before the step we had $f_{old} = f(x_1, x_2, x_3, ...)$, and now, after the
+    exchange, we have $f_{new} = f(x_1, x_3, x_2, ..., x_n)$, so $f_{new} -
+    f_{old} = 2(x_1 x_3 + x_2 x_4 x_1 x_2 + x_3 x_4) = 2(x_1 - x_4)(x_2 - x_3)
+    < 0$ by hypothesis. So, each time we make a switch, $f$ decreases. But,
+    since $f$ is non-negative, it must come to a minimum, after which the
+    numbers will stop changing.
+
+Extremal principle:
+
+5.  Suppose we have a tetrahedron ABCD solving the problem. Suppose AB is the
+    longest edge of ABCD. Then, all four angles ABC, ABD, BAC, BAD must be acute,
+    contradicting our initial assumption.
+
+6.  Choose the face $f$ with the maximum number of sides. Suppose it has m sides.
+    Then, this face is adjacent to $m$ other faces, making a total of $m+1$
+    faces with $s$ sides, $3 \leq s \leq m$. So, by the pigeonhole principle, we
+    must have two faces with the same number of sides in this set.
+
+7.  So, we'll go here by parts:
+
+    a)  No one hits the one who's farthest from the rest, since everyone shoots
+        their nearest target.
+    c)  They can't cross. Suppose some pair of bullet paths do, like A hits B,
+        C hits D, and AB and CD cross. Then ABCD is a convex queadrilateral, and
+        it can be proven that A should choose either C or D instead of B.
+
+8.  Suppose the board has $R$ rooks holding the conditions for the problem. Now, 
+    choose a row $r$ with the minimum number of rooks. Suppose it has $t$ rooks.
+    Then, each of the $n - t$ columns sharing an unoccupied square with $r$ has
+    at least $n - t$ rooks, the rest have at least $t - 1$ of them. So,
+    according to this we have $R \geq (n - t)^2 + (t - 1)t + t =(n - t)^2 + t^2
+    \geq \frac{((n - t) + t)^2}{2} = \frac{n^2}{2}$. Equality holds if $n = 2t$.
+\end{document}
