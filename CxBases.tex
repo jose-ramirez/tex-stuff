@@ -1,0 +1,782 @@
+\documentclass[12pt]{article}
+\usepackage{pslatex,times,amsmath,amssymb}
+
+\newcommand{\C}{\mathbb{C}}
+\newcommand{\Q}{\mathbb{Q}}
+\newcommand{\R}{\mathbb{R}}
+\newcommand{\Z}{\mathbb{Z}}
+
+\begin{document}
+
+\title{Complex Based Number Systems\\
+\mbox{\normalsize also called}\\
+Gaussian Integers as Bases for Exotic Number Systems}
+\author{
+{William J.\ Gilbert}\\[2mm]
+Pure Mathematics Department, University of Waterloo,\\
+ Waterloo, Ontario N2L 3G1, Canada\\
+{\small E-mail:wgilbert{@}uwaterloo.ca}}
+\date{\today}
+
+\maketitle
+
+\begin{abstract}
+We trace Gauss' work on generalizing the rational integers and congruences to the complex integers. We then show how the usual number
+systems for the positive real numbers can be generalized to exotic number systems for the complex numbers using Gaussian integers as bases
+and as digits. Each of these complex number systems gives rise, via an
+iterated function system, to the subset of the complex plane consisting
+of the numbers with zero integer part in the base; this subset often
+has a fractal boundary.  We also describe algorithms for converting
+numbers into these exotic bases.
+\smallskip
+
+\noindent{\footnotesize \emph{2000 Mathematics Subject Classification.} Primary 11A63; Secondary 28A80.}
+
+\end{abstract}
+
+\section{Gaussian Integers}
+
+Gauss introduced complex integers into number theory because he needed
+them to generalize the law of quadratic reciprocity to the law of biquadratic
+(or quartic) reciprocity.  In his 1831 paper, the Theory of Biquadratic
+Residues, II \cite{gauss} Gauss gave a confident modern treatment of complex numbers and introduced the set, $\{a+bi\,|\,a,b\in\Z\}$, that plays the role of integers in the complex numbers; this set is now called the set of \emph{Gaussian integers} and is denoted by $\Z[i]$.  
+Gauss defined the \emph{norm} of the complex number $a + bi$ to be the non-negative number $\mbox{Norm}(a + bi) = a^2 + b^2$. He also introduced the notions of divisibility, congruence and greatest common divisor in
+the Gaussian integers and generalized the Euclidean algorithm and Fermat's
+Little Theorem to these integers.
+\smallskip
+
+    If $m=a + bi$ is a Gaussian integer, then Gauss showed that the complex
+integers that are multiples of $m$ form a square lattice in the complex plane
+with the area of each square being the norm of $m$. Hence a complete residue
+system for the Gaussian integers modulo $m$ must contain $\mbox{\rm Norm}(m)$ elements.
+
+\medskip
+\noindent{\bf Theorem} (Gauss)\quad {\it
+If $a$ and $b$ are coprime, then a complete residue system\linebreak
+for the Gaussian integers modulo $a + bi$ is $\{0,1,2,3,\ldots, N-1\}$, where
+$N=$\linebreak$\mbox{\rm Norm}(a + bi)$.
+}
+\medskip
+
+\noindent{\bf Theorem} (Gauss)\quad {\it
+If $\gcd(a, b) = \lambda$, then a complete residue system for the\linebreak
+Gaussian integers modulo $a + bi$ is
+$$
+\left\{x+yi\,\left|\,x=0,1,2,\ldots,{\textstyle \frac{N}{\lambda}-1}; \, y=0,1,2,\ldots,\lambda-1\right.\right\}
+$$
+where $N=\mbox{\rm Norm}(a + bi)$.
+}
+\medskip
+
+    Jacobi and Eisenstein developed the law of cubic reciprocity.  In this
+case, the analogue of the Gaussian integers is the ring
+$$
+\Z[\omega] = \{a+ b\omega \,|\,  a, b \in\Z\}
+$$
+where $\omega = \frac{-1+\sqrt3 i}2$ is a complex cube root of unity. This ring $\Z[\omega]$ acts as
+the ring of integers in the field $\Q[\omega]$. 
+The norm of the element $a + b\omega$ in this
+field is the number $a^2 - ab + b^2$. Gauss also worked on this cubic reciprocity
+using the elements $a + b\omega$ \cite[p. 102 footnote]{gauss}, but did not publish his results, and they were found in his papers after his death.
+
+    The Gaussian integers, $\Z[i]$, and the integers $\Z[\omega]$ are special cases of
+algebraic integers in an algebraic number field. The notion of congruence
+can be applied to any ring of algebraic integers $\Z[\beta]$, modulo the element $\beta$ in the ring. 
+This ring $\Z[\beta]$ is isomorphic to the quotient ring $\Z[x]/(m(x))$,
+where $m(x)$ is the minimum polynomial of $\beta$. 
+The following result shows that
+the number of elements in a complete residue system modulo an algebraic
+integer is still the norm. This result was essentially proved by J.J.~Sylvester
+\cite{sylv} writing under the pseudonym of Lanavicensis.
+
+\medskip
+
+\noindent{\bf Theorem} (Sylvester).\quad {\it
+If $\beta$ is a non-zero algebraic integer of norm $N$, then a
+complete residue system of elements of $\Z[\beta]$ modulo $\beta$ contains $|N|$ elements
+and
+$$
+\frac{\Z[\beta]}{\beta}\; \approx \; \Z_N.
+$$
+}
+\smallskip
+
+\noindent{\bf Proof.}  Let $m(x) = x^n+c_{n-1}x^{n-1}+\cdots+c_1x+c_0\in\Z[x]$ be the monic
+minimum polynomial of $\beta$.  The norm of the algebraic integer $\beta$ is $N = (-1)^nc_0$, which is the product of $\beta$ with all its conjugates. 
+Let $p(x)\in\Z[x]$ be any integer polynomial and define
+$$
+f:\Z[\beta]\longrightarrow \Z_N
+$$
+by $f(p(\beta)) \equiv p(0) \pmod{N}$. 
+Now $f$ is well defined because if $p_1(\beta) = p_2(\beta)$
+then $p_1(x) - p_2(x) = k(x)m(x)$ for some polynomial $k(x)\in\Z[x]$; hence
+$$
+p_1(0) - p_2(0)\; \equiv \; k(0)m(0) \; \equiv \; 0 \pmod{N}.
+$$
+The map $f$ is surjective and $\mbox{ker}(f) = \{p(\beta)\,|\, p(0)\equiv  0 \pmod{N}\}$. Hence
+$p(0)$ is a multiple of $N$ and $N =(-1)^{n-1}\beta(\beta^{n-1}+c_{n-1}\beta^{n-2}+\cdots +c_1)$.
+Therefore $\mbox{ker}(f) = (\beta)$ and the result follows.                           \hspace*{\fill}\fbox{\phantom{:}}
+
+\section{Complex Bases}
+
+The usual method of representing positive real numbers by their decimal
+or binary expansions can be generalized to represent other number systems
+such as all the real numbers, the complex numbers, or the elements of an
+algebraic number field.  Each representation will give a positional radix
+expansion of all the numbers in the system, using a fixed base and a fixed
+set of digits. In this paper we shall only consider bases and digits that are
+integers in the number system.
+
+An integer $\beta$ will be called a \emph{valid base} for a number system, using the
+set of integer digits $D$, if $0 \in D$ and if every integer $z$ in the number system can be represented uniquely in the form
+$$
+z\ = \ \sum_{j=0}^t a_j\beta^j, \mbox{ where } a_j\in D.
+$$
+Such a representation will be denoted by
+$$
+z\ = \ (a_ta_{t-l}\ldots a_1a_0)_{\beta}.
+$$
+If $\beta$ is such a valid base we shall show that every number $z$ in the system has an infinite radix expansion (not necessarily unique) in the form
+$$
+z\ = \ \sum_{j=-\infty}^t a_j\beta^j, \mbox{ where } a_j\in D.
+$$
+and this will be denoted by
+$$
+z\ = \ (a_ta_{t-l}\ldots a_1a_0\cdot a_{-1}a_{-2}\ldots)_{\beta}.
+$$
+The digits to the left of the radix point, $(a_ta_{t-l}\ldots a_1a_0)_{\beta}$, constitute the integer part of the representation.
+
+    Any positive integer $b > 1$ is a valid base for the non-negative real
+numbers, using the digit set $D = \{0,1,2,3,\ldots, b-1\}$. 
+Knuth \cite[\S 4.1]{knuth} gives
+a history of positional number systems and gives several examples. All the
+real numbers can be represented in a negative base $-10$ using the decimal
+digit set $\{0,1,2,3,\ldots, 9\}$. No sign prefix is necessary to represent negative numbers. 
+The real numbers can also be represented by a balanced ternary
+system using the base 3 and digit set $\{-1,0,1\}$. 
+All the complex numbers can be represented by the base $-1 + i$ with the binary digit set $\{0,1\}$.
+This representation does not separate a complex number into its real and
+imaginary parts. For example
+$$
+-3 + 3i = (11010)_{-1+i} \quad \mbox{ and } \quad  \frac{3-i}2 = (1100.1)_{-1+i}.
+$$
+A more exotic representation for the non-negative real numbers \cite{odlyzko} is the
+base 10 with the digit set $\{0,1,2,3,4,50,51,52,53,54\}$, and for all the real
+numbers \cite{matula} is the base 3 and digit set $\{0,1,-7\}$.
+\medskip
+
+\noindent{\bf Proposition}.\quad {\it
+If $\beta$ is a valid base using the digit set $D$, then $D$ is a complete
+residue system modulo $\beta$.
+}
+\smallskip
+
+\noindent{\bf Proof.}  
+If $z$ is represented by $(a_ta_{t-l}\ldots a_0)_{\beta}$ then 
+$z \equiv a_0\pmod{\beta}$. 
+Hence the digit set $D$ must contain a complete residue system modulo $\beta$.
+
+Now suppose that two digits $c$ and $d$ are congruent modulo $\beta$.  
+Then
+$c - d = e\beta$ for some $e\in \Z[\beta]$. 
+Represent $e$ by $(a_t\ldots a_0)_{\beta}$ so that
+$$
+(c)_{\beta} \ = \ c \ = \ e\beta+d \ = \ (a_t\ldots a_0 d)_{\beta}
+$$
+and the integer $c$ has two different representations in the base $\beta$.
+\hspace*{\fill}\fbox{\phantom{:}}\medskip
+
+    Given an integer $z\in \Z[\beta]$ and a complete residue system $D$ modulo $\beta$, how can we determine whether $z$ has a representation $(a_t\ldots a_0)_{\beta}$ ? 
+Since $a_0 \equiv z\pmod{\beta}$ and the digit set $D$ is a complete residue system, this defines the unit coefficient $a_0$ uniquely. 
+The remaining digits of the representation
+are given by $(a_t\ldots a_1)_{\beta} = (z-a_0)/\beta$. 
+This suggests defining the function
+$$
+\Phi:\Z[\beta]\longrightarrow\Z[\beta]
+$$
+by $\Phi(z) =(z- d)/\beta$, where $d\in D$ and $d \equiv z\pmod{\beta}$.  
+Hence $z$ will have a representation in the base  $\beta$ if and only if the iterates $\Phi(z)$, $\Phi^2(z)$, $\Phi^3(z), \ldots$  eventually reach zero. 
+The digits in the expansion of $z$ are then given by 
+$a_r \equiv \Phi^r(z)\pmod{\beta}$.  
+We can use the function $\Phi$ to obtain a criterion for determining whether an integer $\beta$ is a valid base for $D$. 
+The following theorem is a generalization of a result of Matula \cite{matula} and of Davio, Deschamps and Gossart \cite{davio}.
+
+\medskip
+
+\noindent{\bf Theorem.}\quad {\it
+If $\beta$ is an algebraic integer and $D$ is a complete residue system
+for $\Z[\beta]$ modulo $\beta$, that contains 0, then the following are equivalent.
+\begin{enumerate}
+\item The integer $\beta$ is a valid base using the digit set $D$.
+
+\item For every $z\in \Z[\beta]$ there exists a positive integer $r$ such that $\Phi^r(z) = O$.
+
+\item The integer $\beta$ and all its conjugates have moduli greater than one, and there is no positive integer $t$ for which
+$$
+d_{t-1}\beta^{t-1}+\cdots+d_1\beta+d_0\ \equiv \ 0 \pmod{\beta^t-1} \mbox{ with } d_{t-1},\ldots,d_1,d_0\in D.
+$$
+\end{enumerate}
+}
+\smallskip
+
+\noindent{\bf Proof.}  
+We have shown that (a) implies (b). It follows that (b) implies
+(a) if we can show that the representation of each integer in $\Z[\beta]$ is unique.
+Suppose $(a_t\ldots a_0)_{\beta} = (c_t\ldots c_0)_{\beta}$. 
+Then $a_0 \equiv c_0\pmod{\beta}$ and, since $D$ is
+a complete residue system, $a_0 = c_0$. 
+Hence ($(a_t\ldots a_1)_{\beta} = (c_t\ldots c_1)_{\beta}$ and it
+follows that all the other coefficients are the same.
+
+If $\beta$ is an algebraic integer of degree $n$, we can write any element $z\in \Z[\beta]$ uniquely in the form
+$$
+z \ = \ u_{n-1}\beta^{n-1}+\cdots+u_1\beta+u_0 \mbox{ where each } u_i\in\Z.
+$$
+The element $z$ can be viewed as lying in the tensor product $\Q(\beta)\otimes\C$,
+which is a vector space of dimension $n$ over $\C$ with basis $\{\beta^{n-1},\ldots,\beta,1\}$.
+Multiplication by $\beta$ corresponds to multiplication by a matrix, $B$, that is the
+companion matrix of the minimum polynomial of $\beta$. Since $\beta$ is an algebraic
+integer, $B$ is a non-singular matrix with distinct eigenvalues. 
+Define a vector
+norm, $\|.\|$, on $\Q(\beta)\otimes\C$, consistent with a matrix norm, so that $\|B^{-1}\|=\mu$,
+the spectral radius of $B^{-1}$ \cite[\S2.3]{householder}. 
+This can be done by changing the basis
+of $\Q(\beta)\otimes\C$ so as to diagonalize $B^{-1}$ and then taking the row sum norm.
+Since $B$ is the companion matrix of the minimum polynomial of $\beta$, the
+eigenvalues of $B$ are the conjugates of $\beta$; hence $\mu$ is the the modulus of the largest conjugate of $\beta^{-1}$ and $\mu^{-1}$ is the modulus of the smallest conjugate of $\beta$.
+
+    The map $\Phi$ can be viewed as operating on the elements of $\Z[\beta]$ inside
+this normed vector space by $\Phi(z)=B^{-1}(z-d)$. When we iterate $\Phi$, starting
+with an element $z\in\Z[\beta]$, there are three types of orbits that could occur.
+The orbit could go to zero and then we would have a representation of $z$ in
+the base $\beta$ with digits from $D$. 
+The orbit could tend to infinity. We shall
+show that this cannot happen if the conjugates of $\beta$ have moduli larger than
+one, so that the largest eigenvalue, $\mu$, of $B^{-1}$ is smaller than one. The third
+possibility is that the orbit could end up in a non-zero cycle. We shall show
+that this leads to the condition given in (c).
+
+  Let $\Delta=\max\{\|B^{-1}d\| \,\mid\ d\in D\}$. Then, if $z\in\Z[\beta]$ and $\mu < 1$
+\begin{eqnarray*}
+\|\Phi(z)\|&=&\|B^{-1}(z)-B^{-1}d\|\\
+&\leqslant&\|B^{-1}\| \|z\|+\|B^{-1}d\|\\
+&\leqslant&\mu \|z\|+ \Delta\\
+&\leqslant&\|z\|
+\end{eqnarray*}
+whenever $\|z\|>\Delta/(1-\mu)$. 
+Hence the sequence $z$, $\Phi(z)$, $\Phi^2(z)\ldots$, can
+only take a finite number of different values, and must either end up at
+zero or there exists $z_k\in\Z[\beta]$ such that $\Phi^t(z_k)=z_k$. 
+In the latter case let $d_r$ be the digit defined by
+$\Phi(\Phi^r(z_k))= (\Phi^r(z_k)-d_r)/\beta$ so that
+$$
+z_k \ = \ \Phi^t(z_k) \ = \ \frac{z_k-d_0-d_1\beta-\cdots-d_{t-1}\beta^{t-1}}{\beta^t}
+$$
+and
+$$
+d_{t-1}\beta^{t-1}+\cdots+d_1\beta+d_0\ = \ (-z_k)(\beta^t-1)\equiv 0 \pmod{\beta^t-1}
+$$
+This show that (c) implies (b).
+
+    The condition (b) implies that the iterates of $\Phi$ contain no non-zero
+cycles, and it follows from \cite[cor. 4]{radix} that none of the conjugates of $\beta$ can have modulus smaller than one. 
+\hspace*{\fill}\fbox{\phantom{:}}\medskip
+
+    For an example in which $\beta$ has modulus larger than one, but its conjugate does not, consider $\beta=-1-\sqrt3$ of norm 2, with the digit set 
+$D = \{0, 1\}$. 
+If we start with $z = -1$, we find that the iterates $\Phi^r(-1)$ do not tend to zero and do not repeat; their norm $\|\Phi^r(-1)\|$ tends to infinity even though their absolute values $|\Phi^r(-1)|$ remain bounded.
+
+    Most Gaussian integers can be valid bases for all the complex numbers
+if the digit sets are chosen appropriately.
+
+\medskip
+\noindent{\bf Theorem} (Davio, Deschamps and Gossart \cite{davio})\quad {\it
+For any Gaussian integer $\beta$
+of modulus larger than one, except 2 and $1 \pm i$, there is a complete residue
+system $D$ so that $\beta$ is a valid base for the complex numbers using the digit set $D$.
+}
+\medskip
+
+    If the digit set is restricted to be a set of natural numbers, then the
+possible bases are drastically reduced.
+
+\medskip
+\noindent{\bf Theorem} (K\'atai and Szab\'o \cite{katai})\quad {\it
+Let $\beta$ be a Gaussian integer of norm $N$
+and let $D = \{0,1,2,\ldots, N-1\}$.  Then $\beta$ is a valid base for the complex numbers using the digit set $D$ if and only if $\beta=-n\pm i$ or some positive integer $n$.
+}
+\medskip
+
+\noindent{\bf Theorem} (Gilbert \cite{radix}, K\'atai and Kov\'acs \cite{katai-kovacs1}, \cite{katai-kovacs2})\quad {\it
+Let $\beta$ be a quadratic
+integer with minimum polynomial $x^2+c_1x+c_0$. Then $\beta$ is a valid base for $\Z[\beta]$ using the digit set $D = \{0,1,2,\ldots, |c_0|-1\}$ if and only if $c_0 \geqslant 2$ and $-1\leqslant c_1\leqslant c_0$.
+}
+\medskip
+
+    Further questions naturally arise. What are the possible bases for the
+quadratic number fields using any set of algebraic integers as digits? What
+are the possible bases using algebraic integers of higher degree, with either
+natural numbers as digits, or any set of algebraic integers as digits?
+
+\section{Geometry of Complex Bases}
+
+Each complex base gives rise to an interesting subset of the complex plane
+consisting of the numbers expressible with zero integer part in the base.
+More generally, a base that is an algebraic integer of degree $n$ gives rise to
+a subset of an $n$ dimensional vector space.
+
+    If $\beta$ is a valid base for $\Z[\beta]$ using the digit set $D$, then the terminating radix expansion $(a_ta_{t-l}\ldots a_1a_0\cdot a_{-1}a_{-2}\ldots a_r)_{\beta}$ is an element of the algebraic
+number field $\Q(\beta)$ and such expansions are dense in the vector space
+using the norm $\|.\|$ defined in the previous section. Every element $z$ in the vector space $\Q(\beta)\otimes\R$ has an infinite radix expansion
+$$
+z\ = \ \sum_{j=-\infty}^t a_j\beta^j\ = \ (a_ta_{t-l}\ldots a_1a_0\cdot a_{-1}a_{-2}\ldots)_{\beta}, \mbox{ where } a_j\in D.
+$$
+This result can be proven by generalizing \cite[Theorem 2]{katai} and using the
+norm $\|.\|$ in the vector space $\Q(\beta)\otimes\R$, instead of the absolute value in $\C$.
+
+If $\beta$ is a non-real Gaussian integer (or if $\beta$ generates an imaginary
+quadratic number field) then $\Q(\beta)\otimes\R$ is isomorphic to $\C$ and this gives
+a representation of all the complex numbers. More generally $\Q(\beta)\otimes\R$ is a vector space of dimension $n$ over $\R$, where $n$ is the degree of $\beta$.
+ All the integers, $\Z[\beta]$, are uniquely represented in the base $\beta$ by expansions with zeros to the right of the radix point.
+
+    Consider the set of points in $\Q(\beta)\otimes\R$ representable with a given integer part in the base $\beta$. 
+Each of these sets are congruent by translations along
+integers in $\Z[\beta]$. 
+Define the set of points having a \emph{zero integer part} to be
+$$
+K(\beta, D) \ =  \ \{(0\cdot a_{-1}a_{-2}\ldots)_{\beta}\ \mid \ a_j\in D\} \ \subset \ \Q(\beta)\otimes\R.
+$$
+This is a closed and bounded subset of $\Q(\beta)\otimes\R$.
+
+    The set $K(\beta, D)$ can also be constructed in the following way using an
+iterated function system.  For each digit $a\in D$ define the vector space
+function 
+$$
+f_a: \Q(\beta)\otimes\R\rightarrow\Q(\beta)\otimes\R\quad\mbox{ by }\quad f_a(z) \ =  \ \frac{z+a}{\beta}.
+$$
+These are $N$ affine contraction maps defined on an $n$dimensional real vector
+space, where $N = \mbox{Norm}{\beta}$. For each $a\in D$,
+$f_a(K(\beta, D))\subset K(\beta, D)$, since $f_a$ is a right shift map on the radix expansion, and furthermore
+$$
+K(\beta, D) \ \subset  \ \bigcup_{a\in D} f_a(K(\beta, D))
+$$
+since $(0\cdot a_{-1}a_{-2}\ldots)_{\beta}=f_{a_{-1}}((0\cdot a_{-2}\ldots)_{\beta})$. 
+The set $\{f_a\}_{a\in D}$ forms an iterated
+function system, as defined by Barnsley \cite[\S 3.7]{barnsley}, for which $K(\beta, D)$ is the unique attractor (also see \cite{hutchinson}). 
+The set $K(\beta, D)$ is self-similar with respect to these functions and it often has a fractal boundary.
+
+    For example, the set $K(-1 + i, \{0, 1\})$ is the space-filling twin dragon
+curve \cite[p. 67]{mandelbrot}, \cite[p. 312]{barnsley}, \cite[\S 4.1]{knuth}.
+
+    The base $-3 + i$ yields a decimal representation of all the complex numbers using the digits 0, 1, $2,\ldots,9$ and the corresponding set of numbers with zero integer part is shown in Figure 1. 
+This set has unit area and it tiles the complex plane by translations along the Gaussian integers. 
+Its boundary has a fractal dimension of approximately 1.55 \cite{dimension}.
+
+    The symmetric digit set $D = \{0, \pm1, \pm i\}$ is a complete residue system for $\beta = 2 + i$ and this yields a valid representation of all the Gaussian integers. 
+In fact Gauss noticed \cite[p. 172]{gauss} that $D$ was the most compact
+residue system for the similar modulus $1 + 2i$. This base and its arithmetic
+has been extensively studied by Davio, Deschamps and Gossart \cite{davio}. 
+The set of complex numbers with zero integer part, shown in Figure 2, is the same as the set constructed by Mandelbrot \cite[Plate 49]{mandelbrot} from a generalized Koch curve.
+
+    The number $2 + i$ is also a valid base for the digit set 
+$\{0, 1, \pm i, -2 - 3i\}$,
+even though these digits are not adjacent Gaussian integers.  
+The corresponding set in the complex plane, shown in Figure 3, is not connected, but it still has unit area and tiles the plane by translations along the Gaussian integers.
+
+    It is also possible to consider an integer $\beta$ as a base, even if $\Z[\beta]$ is not
+the set of all the integers in the number system. In this case the number of
+digits chosen must be the norm of $\beta$ in the algebraic number field and, of
+course, the digits must contain some non-rational numbers. For example, 3
+has norm 9 in the complex numbers and 3 is a valid base for the Gaussian
+integers using the nine element digit set $D = \{0, \pm1, \pm i, \pm1\pm i\}$. The set of numbers with zero integer part, $K(3, D)$, is just the unit square centered
+at the origin. Actually, this representation essentially separates a complex
+number into its real and imaginary parts \cite[\S4.3.1]{davio}.
+
+
+Write the digits of $D = \{0, \pm1, \pm i, \pm1\pm i\}$ in the form
+$$
+0\ = \ \begin{array}{c}0\\0\end{array}, \quad
+1\ = \ \begin{array}{c}1\\0\end{array}, \quad
+-1\ = \ \begin{array}{c}\tilde1\\0\end{array}, \quad
+i\ = \ \begin{array}{c}0\\1\end{array}, \quad
+-i\ = \ \begin{array}{c}0\\\tilde1\end{array},
+$$
+$$
+1+i \ = \ \begin{array}{c}1\\1\end{array}, \quad
+1-i\ = \ \begin{array}{c}1\\ \tilde1\end{array}, \quad
+-1+i\ = \ \begin{array}{c}\tilde1\\1\end{array}, \quad
+-1-i\ = \ \begin{array}{c}\tilde1\\\tilde1\end{array}
+$$
+then, for any number in the system, such as
+$$
+z \ = \ \left(\begin{array}{c}0\\0\end{array}. \begin{array}{cccc}1&0&\tilde1&\tilde1\\\tilde1&1&0&1\end{array}\right)_3
+$$
+the top row is the real part of the number and the bottom row is the imaginary part in the balanced ternary system \cite[\S 4.1]{knuth}, in which $-1$ is represented by $\tilde1$. 
+In the above example
+$$
+\mbox{Re}(z) \ = \ (0.10\bar1\bar1)_3 \ = \ \frac{23}{81}\quad \mbox{ and }\quad  \mbox{Im}(z) \ = \ (0.\bar1101)_3 \ = \ -\frac{17}{81}.
+$$
+
+    If we consider the algebraic number field $\Q(\omega)$, where $\omega$ is a complex cube root of unity, then $\beta = -2 - \omega$, of norm 3, is a valid base using the digit
+set $\{0, 1, 2\}$. The space $\Q(\omega)\otimes\R$ is isomorphic to the complex numbers and the set of numbers with zero integer part in the base is shown in Figure 4.
+This set tiles the complex plane using translations along $\Z[\omega]$ and the area of the set is the determinant of the lattice $\Z[\omega]$, namely $\sqrt3/2$.
+
+\section{Converting to a Complex Base}
+
+The standard method for converting an integer from one real base to another
+extends to exotic bases.
+\medskip
+
+\noindent{\bf Standard Base Conversion Algorithm} {\it
+for converting an integer in $\Z[\beta]$ to the base $\beta$ using the digit set $D$.
+
+\noindent If $z\in\Z[\beta]$ then we can perform the following operations, since $D$ is a complete residue system modulo $\beta$:
+$$
+\begin{array}{rcll}
+z&=& q_1\beta+a_0 & \mbox{ where }a_0\in D\\
+q_1&=& q_2\beta+a_1 & \mbox{ where }a_1\in D\\
+&\vdots&\\
+q_{t-1}&=& q_t\beta+a_{t-1} & \mbox{ where }a_{t-1}\in D\\
+q_t&=& 0\beta+a_t & \mbox{ where }a_t\in D
+\end{array}
+$$
+and then $z= (a_t\ldots a_1a_0)_{\beta}$.
+}
+\medskip
+
+    Note that $q_{j+1}=(q_j-a_j)/\beta$, where $a_j \equiv q_j \pmod{\beta}$ so $q_{j+1}=\Phi(q_j)$,
+where $\Phi:\Z[\beta]\rightarrow\Z[\beta]$ was the map defined in \S2. 
+The digits in the expansion
+of $z$ are now given by $a_r \equiv \Phi^r(z) \pmod{\beta}$ where $a_r\in D$.
+
+    If the digits are all rational integers, then it is easier to use the following clearing algorithm. 
+In this algorithm we consider elements of $\Z[\beta]$ as
+formal polynomials in $\beta$. We shall represent the polynomial $\sum_{j=0}^s$ as
+$(a_s\ldots a_1a_0)_{\beta}$, even though the coefficients may not be in the digit set $D$; however they will be rational integers.
+
+\medskip
+
+\noindent{\bf Clearing Algorithm} {\it
+for converting an element of $\Z[\beta]$ to the base $\beta$ whenever the digit set $D\subset\Z$.
+
+\noindent Write any element $z\in\Z[\beta]$ as a polynomial in $\beta$,
+$$
+z \ = \ \sum_{j=0}^s  \ = \ (a_s\ldots a_1a_0)_{\beta}\quad\mbox{ where } a_j\in\Z.
+$$
+Let the minimum polynomial of $\beta$ be 
+$m(x) = x^n+c_{n-1}x^{n-1}+\cdots+c_1x+c_0$
+so that
+$$
+0 \ = \ m(\beta) \ = \ \beta^n+c_{n-1}\beta^{n-1}+\cdots+c_1\beta+c_0 \ = \ 
+(1c_{n-1}\ldots c_1c_0)_{\beta}
+$$
+and $|c_0|=|\mbox{Norm}(\beta)|$. 
+Start clearing the representation of $z$ from the right,
+so as to convert each coefficient into one lying in the digit set.  
+Suppose
+$a_0$, $a_1,\ldots,a_{k-1}\in D$ but $a_k\notin D$.  
+Add, as polynomials in $\beta$, an integer
+multiple of $\beta^km(\beta)$ to $z$ so as to make the coefficient of $\beta^k$ a digit in $D$.
+This is equivalent to shifting the polynomial $(1c_{n-1}\ldots c_1c_0)_{\beta}$, so that $c_0$ is
+in the same column as $a_k$ and then adding a suitable integer multiple of it
+to $z$.
+}
+\medskip
+
+    Since $D$ is a complete residue system modulo $|c_0|$ in $\Z$, it is always
+possible to add an integer multiple of $|c_0|$ to the coefficient of $\beta$ so as to obtain an element of $D$. 
+Since $m(\beta) = 0$, adding any multiple of $m(\beta)$ to $z$
+is equivalent to adding zero to $z$. The algorithm will stop if and only if $z$
+has a representation in the base $\beta$ \cite{radix}.
+
+    This algorithm is essentially the same as the clearing algorithm used in
+\cite{faltin} for the base 2.  That paper performed arithmetic on real numbers by
+considering the binary expansion of a number as a Laurent series and doing
+the arithmetic, without carries, in the formal Laurent series. The resulting
+Laurent series then had to be cleared so that each digit was 0 or 1.
+
+    As an example, let us use the Clearing Algorithm to convert 
+$z = 14 + 5\omega$
+into the base $\beta = -2 - \omega$ using the digit set $D = \{0, 1, 2\}$. First write $z$ as
+a polynormal in $\beta$:
+$$
+z \ = \ 14 + 5\omega \ = \ -5\beta+4 \ = \ (-5\ 4)_{\beta}.
+$$
+The minimum polynomial of $-2 - \omega$ is $m(x) = x^2 + 3z + 3$ so
+$$
+m(\beta) \ = \ \beta^2 + 3\beta + 3 \ = \ = \ (1\ 3 \ 3)_{\beta}.
+$$
+Now perform the Clearing Algorithm in the polynomial ring $\Z[\beta]$. We just
+write down the coefficients.
+$$
+\begin{array}{rrrrrr}
+ &  &  &  &-5& 4\\
+ &  &  &-1&-3&-3\\
+ &  & 3& 9& 9   \\
+ &-2&-6&-6      \\
+1& 3& 3&        \\
+\hline
+1& 1& 0& 2& 1& 1\\
+\hline
+\end{array}
+$$
+The first row is a representation of $z$, though the coefficients are not digits in the set $D$. The next four rows are multiples of the minimum polynomial and the sum in the last row is the representation of $z$ using digits from $D$.
+Hence $z = 14 + 5\omega = (110211)_{-2 - \omega}$.
+
+    If we wish to convert any number, not necessarily an integer, into an
+exotic base then we have to first find the integer part of the expansion and
+then find the part of the expansion to the right of the radix point. Finding
+the integer part may take some trial and error, especially if the point is close to the fractal boundary of two or more regions that have a given integral
+part.
+
+    Recall that the region of points with zero integer part, $K(\beta, D)$, tiles the
+vector space $\Q(\beta)\otimes\R$ using translations along the integers $\Z[\beta]$. Figure 5
+shows the regions with a given integer part in the base $2+i$ using the digit set
+$D = \{0, \pm1, \pm i\}$; Figure 2 showed the region, $K(2 + i, D)$, with zero integer
+part. We shall first describe how to determine whether a number can be
+represented with a zero integer part, and if so, what that representation is.
+The method uses the Escape Time Algorithm \cite[\S 7.1]{barnsley} and is also called the
+Repelling Method in \cite{pru}. This algorithm was used to draw all the figures
+in this paper.
+
+  The set $K(\beta, D)$ is bounded in the normed vector space $\Q(\beta)\otimes\R$ since, if $z\in K(\beta, D)$, then
+\begin{eqnarray*}
+\|z\| &=& \|(0\cdot a_{-1}a_{-2}\ldots)_{\beta}\| \\
+&=& \left\|\sum_{j=-\infty}^{-1} a_j\beta^j\right\| \\
+&\leqslant& \Delta(1+\mu+\mu^2+\cdots) \\
+&=&\frac{\Delta}{1-\mu}
+\end{eqnarray*}
+where $\Delta$ was defined in \S2 as $\max\{\|B^{-1}d\| \,\mid\ d\in D\}$ and $\mu$ is the modulus
+of the largest conjugate of $\beta^{-1}$. Since $\beta$ is a valid base, $\mu<1$.
+
+\medskip
+
+\noindent{\bf Escape Time Algorithm} {\it
+for determining the set of numbers with zero integer parts, and their expansions, in the base $\beta$ using the digit set $D$.
+
+\noindent 
+For each digit $a\in D$, define the function 
+$g_a:\Q(\beta)\otimes\R\rightarrow\Q(\beta)\otimes\R$ by
+$g_a(z)=\beta z -a$. 
+Let $\mathbf{K}$ be a bounded subset of $\Q(\beta)\otimes\R$ that contains
+$K(\beta, D)$, and is easy to compute. 
+Given any number $z\in\Q(\beta)\otimes\R$, construct
+the sequence of sets $\mathbf{V}_0$, $\mathbf{V}_1$, $\mathbf{V}_2 \ldots$,  as follows. Let the initial set $\mathbf{V}_0$ be $\{z\}$
+if $z\in\mathbf{K}$, or empty otherwise, and
+$$
+\mathbf{V}_j \ = \ \left\{g_{a_j}(v)\ \right| \left. \ v\in \mathbf{V}_{j-1}, a_j\in D, g_{a_j}(v)\in\mathbf{K} \right\}.
+$$
+Stop the algorithm if the set $\mathbf{V}_j$ becomes empty or the number of sets $j$ reaches some predetermined limit $t$.
+
+If any of the sets $\mathbf{V}_j$ are empty, then $z$ does not lie in the set $K(\beta, D)$. 
+It $t$ is large and $\mathbf{V}_t$ is non-empty, then $z$ either lies in $K(\beta, D)$, or is very close to it. 
+A point in the set $\mathbf{V}_t$ is of the form 
+$g_{a_t}\circ\cdots\circ g_{a_2}\circ g_{a_1}(z)$
+where each $a_j\in D$, and
+$$
+z \ \approx \ (0.a_1a_2\ldots a_t)_{\beta} \in K(\beta, D).
+$$
+}
+\medskip
+
+    If  $\mathbf{V}_r$ is the first empty set, then $r$ is a measure of the time it takes $z$ to escape from $\mathbf{K}$ under iterations of the maps $g_a$.
+
+    We remarked in \S3 that $K(\beta, D)$ is the attractor of the iterated function system of contraction maps $f_a: \Q(\beta)\otimes\R\rightarrow\Q(\beta)\otimes\R$ defined by
+$f_a(z)=(z+a)/\beta$. The map $g_a$ is the inverse of $f_a$. Note that
+$$
+g_{g_{-1}}\left((0.a_{-1}a_{-2}a_{-3}\ldots)_{\beta}\right) \ = \ (0.a_{-2}a_{-3}\ldots)_{\beta}
+$$
+so that it acts as a left shift operator.  If the norm of $z$ is larger than
+$\Delta/(1-\mu)$, then $g_a(z)$ also has norm larger than this, since
+\begin{eqnarray*} 
+\|g_a(z)\| &=& \|\beta z-a\| \\
+&=& \left\|\beta\left(z-\frac{a}{\beta}\right)\right\| \\
+&\geqslant& \mu^{-1}(\|z\|-\Delta) \\
+&\geqslant& \mu^{-1}\left(\frac{\Delta}{1-\mu}-\Delta\right) \\
+&=&\frac{\Delta}{1-\mu}.
+\end{eqnarray*}
+
+If $\mathbf{V}_t$ is non-empty then
+$$
+z\in f_{a_1}\circ \cdots\circ f_{a_t}(\mathbf{K})\quad\mbox{ where each } a_j\in D.
+$$
+Since each affine map $f_a$ contracts by a factor $\mu<1$, 
+$f_{a_1}\circ \cdots\circ f_{a_t}$ 
+contracts by a factor $\mu^t$. 
+Now $0\in \mathbf{K}$ and 
+$f_{a_1}\circ \cdots\circ f_{a_t}(0)=(0.a_1a_2\ldots a_t)_{\beta}$,
+so it follows that 
+$\|z-(0.a_1a_2\ldots a_t)_{\beta}\|\leqslant\mu^t\mbox{ diam }\mathbf{K}$.
+
+    One bounded subset of $\Q(\beta)\otimes\R$ that contains $K(\beta, D)$ that we could take is 
+$\mathbf{K}=\{z\in\Q(\beta)\otimes\R\  \mid \ \|z\| \leqslant \Delta/(1-\mu)\}$.
+If necessary, we can always
+find a smaller set, since if $K(\beta, D)$ then
+$$
+K(\beta, D)\ \subset \ \bigcup_{a\in D} f_a(\mathbf{K}) \ = \ \bigcup_{a\in D} g_a^{-1}(\mathbf{K}).
+$$
+
+    If we are given a general point $z\in\Q(\beta)\otimes\R$, how do we determine its integer part? 
+Since $K(\beta, D)$ is bounded, there are only a finite number
+of possible integer parts for $z$. If $u\in\Z[\beta]$ is the integer part of $z$, then $z-u\in K(\beta, D)$. 
+We therefore test the possible choices of $u$ by using the
+Escape Time Algorithm to determine whether $z - u$ is in $K(\beta, D)$; if it is, then the algorithm will also give us the fractional part of the expansion.
+
+    Since the set $K(\beta, D)$ tiles the space $\Q(\beta)\otimes\R$, points on the boundary
+of these tiles, such as those points shown in Figure 5, have at least two
+representations, with different integer parts, in the base $\beta$. 
+Since the vector space $\Q(\beta)\otimes\R$ is $n$-dimensional, any covering of it must cover some points
+of the space with at least $n + 1$ sets, and so there must be some points on
+the boundary of $n + 1$ translates of $K(\beta, D)$.
+In particular, for any valid
+base in the complex numbers, there must be some points that have at least
+three expansions in that complex base \cite{intell}, \cite{threeexps}.
+
+    In Figure 5 it looks as if some points have four expansions in the base
+$2 + i$.  By symmetry, one of these points seems to be $(1 + i)/2$.  Let us
+determine the expansions of this point $z = (1 + i)/2$ in the base $2 + i$ with
+digit set $D = \{0, \pm1, \pm i\}$. 
+We shall use the absolute value as the norm in $\C$.
+The values of $\mu$ and $\Delta$ are both $1/\sqrt5$ and so 
+$\Delta/(1-\mu)=1/(\sqrt5-1)<0.81$.
+Therefore the set $K(2+i, D)\subset\mathbf{K}$, where $\mathbf{K}$ is the disc of radius $0.81$ centered
+at the origin. Apply the Escape Time Algorithm to determine if $z$ has an
+expansion with zero integer part.  The first set is 
+$\mathbf{V}_0=\{(1+i)/2\}$ and
+$g_0(z)=\beta z=(1+3i)/2$, $g_1(z)=\beta z - 1=(-1+3i)/2$, $g_{-1}(z)=(3+3i)/2$, $g_i(z)=(1+i)/2$, and $g_{-i}(z)=(1+5i)/2$. 
+Hence $\mathbf{V}_1=\{(1+i)/2\}$ and $(1 +i)/2$
+is a fixed point of the map $g_i$. Any fixed point of a map $g_a$, or compositions
+of such maps, lies in the attractor $K(\beta, D)$ \cite{hutchinson}. 
+Hence $z\in K(2 + i, D)$ and
+$z = (0.\overline{i})_{2+i}$, where the sequence of digits under the bar is repeated indefinitely.
+From Figure 5, it also looks as if $z$ has an expansion with integer part 1. 
+We can check this by applying the Escape Time Algorithm to $z-1 = (-1 + i)/2$.
+We find that $\mathbf{V}_j=\{(-1+i)/2\}$ for all j and that $(-1 + i)/2$ is a fixed point
+for $g_{-1}$. Hence $z = (1.\stackrel{-}{\tilde{1}})_{2+i}$, where $\tilde{1}$ denotes the digit $-1$. The number $z$
+also has expansions with integer parts $i$ and $1 + i = (1\tilde{1})_{2+i}$ so
+$$
+z \ = \ \frac{1+i}2 \ = \ (0.\overline{i})_{2+i} \ = \ (1.\stackrel{-}{\tilde{1}})_{2+i} \ = \ (i.\overline{1})_{2+i} \ = \ (1\tilde{1}.\stackrel{-}{\tilde{i}})_{2+i}. 
+$$
+
+\newpage 
+\begin{thebibliography}{10}
+
+\bibitem{barnsley} {\sc M.~F.~Barnsley}, 
+``Fractals everywhere,''
+Academic Press, New York, 1988.
+
+\bibitem{davio} {\sc M.~Davio, J.~P.~Deschamps and C.~Gossart,} 
+Complex arithmetic,
+{\em Philips M.\ B.\ L.\ E.\ Research Lab.\ Report} {\bf R369} (May 1978) Brussels.
+
+\bibitem{faltin} {\sc F.~Faltin, N.~Metropolis, B.~Ross and G.-C.~Rota} 
+The Real Numbers as a Wreath Product,
+{\em Adv.\ in Math.} {\bf 15} (1975) 278-304. 
+(Reprinted as
+A Constructive Definition of the Real Numbers, in {\em Surveys in Applied Mathematics}, Essays dedicated to S.M.~Ulam, Academic Press, New York, 1976.)
+
+\bibitem{gauss} {\sc C.~F.~Gauss,} 
+``Werke II,'' K\"oniglichen Gesellschaft der Wissenschaften, 
+G\"ottingen, 1863. (Reprinted by Georg Olms, Hildesheim, 1973.)
+
+\bibitem{radix} {\sc W.~J.~Gilbert,} 
+Radix representations of quadratic fields,
+{\em J.\ Math.\ Anal.\ Appl.} {\bf 83} (1981) 264--274.
+
+\bibitem{intell} {\sc W.~J.~Gilbert,} 
+Fractal Geometry derived from Complex Bases,  
+{\em Math.\ Intelligencer} {\bf 4} (1982) 78--86.
+
+\bibitem{threeexps} {\sc W.~J.~Gilbert,} 
+Complex numbers with three radix expansions,  
+{\em Canad.\ J.\ Math.} {\bf 34} (1982) 1335--1348.
+
+%\bibitem{arith} {\sc W.~J.~Gilbert,} 
+%Arithmetic in complex bases,
+%{\em Math.\ Mag.} {\bf 57} (1984) 77--81.
+
+\bibitem{dimension} {\sc W.~J.~Gilbert,} 
+The Fractal Dimension of Sets derived from Complex Bases,
+{\em Canad.\ Math.\ Bull.} {\bf 29} (1986) 495--500.
+
+\bibitem{householder} {\sc A.~S.~Householder}, 
+``The Theory of Matrices in Numerical Analysis,''
+blaisdell, New York, 1964.
+
+\bibitem{hutchinson} {\sc J.~E.~Hutchinson,} 
+Fractals and self similarity,
+{\em Indiana Univ.\ Math.\ J.} {\bf 30} (1981) 713--747.
+
+\bibitem{katai-kovacs1} {\sc I.~K\'atai and B.~Kov\'acs,} 
+Kanonische Zahlensysteme in der Theorie der quadratischen algebraischen Zahlen, 
+{\em Acta Sci.\ Math.\ (Szeged)} {\bf 42} (1980) 99--107.
+
+\bibitem{katai-kovacs2} {\sc I.~K\'atai and B.~Kov\'acs,} 
+Canonical Number Systems in Imaginary Quadratic Fields, 
+{\em Acta Math.\ Acad.\ Sci.\ Hungaricae} {\bf 37} (1981) 159--164.
+
+\bibitem{katai} {\sc I.~K\'atai and J.~Szab\'o,} 
+Canonical number systems for complex integers, 
+{\em Acta Sci.\ Math.\ (Szeged)} {\bf 37} (1975) 255--260.
+
+%\bibitem{kenyon} {\sc R.~Kenyon,} 
+%Self-replicating tilings,
+%{\em Contemporary Math.} {\bf 135} (1992) 239--263.
+
+\bibitem{knuth} {\sc D.~E.~Knuth,} 
+``The art of computer programming,'' Vol.~2, Seminumerical algorithms, 
+2nd ed., Addison-Wesley, Reading, Mass., 1981.
+
+%\bibitem{kovacs} {\sc B.~Kov\'acs and A.~Peth\"o,} 
+%Number systems in integral domains, especially in orders of algebraic number %fields,
+%{\em Acta Sci.\ Math.\ (Szeged)} {\bf 55} (1991) 287--299.
+
+\bibitem{mandelbrot} {\sc B.~B.~Mandelbrot}, 
+``The Fractal Geometry of Nature,''
+Freeman, San Francisco, 1983.
+
+\bibitem{matula} {\sc D.~W.~Matula,} 
+Basic digit sets for radix representation,
+{\em J.\ Assoc.\ Comput.\ Mach.} {\bf 29} (1982) 1131--1143.
+
+\bibitem{odlyzko} {\sc A.~M.~Odlyzko,} 
+Non-negative Digit Sets in Positional Number Systems,
+{\em Proc.\ London Math.\ Soc.} {\bf 37} (1978) 213--229.
+
+\bibitem{pru} {\sc P.~Prusinkiewicz and G.~Sandness,} 
+Koch curves as attractors and repellers, 
+{\em IEEE Comp.\ Graphics \& Appl.} {\bf 8} \#6 (Nov. 1988)
+26--40.
+
+\bibitem{sylv} {\sc J.~J.~Sylvester,} 
+Note on Complex Integers (by Lanavicensis), 
+{\em Quart.\ J.\ Pure and Applied Math. } {\bf 4} (1861)
+94--96 and 124--130.
+
+\end{thebibliography}
+
+\newpage
+% Figure Captions:
+
+\noindent
+Figure 1: The set $K(-3 + i, \{0, 1,\ldots, 9\})$ in the complex plane.
+\vspace*{5mm}
+
+\noindent
+Figure 2: The set $K(2 + i, \{0, 1, -1, i, -i\})$ in the complex plane.
+\vspace*{5mm}
+
+\noindent
+Figure 3: The set $K(2 + i, \{0, 1, i, -i, -2 - 3i\})$ in the complex plane is shown in the first figure and various translates of this set are shown in the second figure.
+\vspace*{5mm}
+
+\noindent
+Figure 4: The set $K(-2 - \omega, \{0, 1, 2\})$ in the complex plane, where $\omega$ is a complex cube root of unity.
+\vspace*{5mm}
+
+\noindent
+Figure 5: The regions with a given integer part in the base $2 + i$ using the
+digit set $\{0, 1, -1, i, -i\}$.
+	
+\end{document}
+
