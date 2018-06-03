@@ -1,0 +1,196 @@
+\documentclass{article}
+\title{Some problems I've solved through time}
+\usepackage{amssymb}
+\usepackage{amsmath}
+\author{Jose Ramirez}
+\setlength{\parindent}{0pt}
+\pdfpagewidth 8.5in
+\pdfpageheight 11in
+
+\begin{document}
+\maketitle
+
+\section{Problems}
+\label{sec:Problems}
+
+\begin{enumerate}
+
+\item Let ABC be a triangle with $AB=AC$, and let $I$  be its incentre. The following holds: $BC=AB+AI$. Find all the possible values of $\angle BAC$.
+
+\item Find, in closed form, the value of $$f(m) = \sum_{k} \binom{2n + 1}{2k}\binom{m + k}{2n}.$$
+
+\item Suppose $x, y, z > 0$ and $x + y + z = 1$. Then $$\left(1 + \frac{1}{x}\right)\left(1 + \frac{1}{y}\right)\left(1 + \frac{1}{z}\right) \geq 64.$$
+
+\item Prove that $$(ab + bc + ac)(a + b + c)^4 \leq 27(a^3 + b^3 + c^3)^{2}$$ for $a, b, c \geq 0.$
+
+\item Show that there are infinitely many positive integer numbers n such that $n^2 + 1$ has two positive divisors whose difference is $n$.
+
+\item Let $x_{n + 1} = 4x_{n} - x_{n - 1}, x_0 = 0, x_1 = 1$, and $y_{n + 1} = 4y_{n} - y_{n - 1}, y_0 = 1, y_1 = 2$. Prove that $\forall n$, $y_{n}^2 - 3x_{n}^2 = 1$.
+
+\end{enumerate}
+
+\section{Solutions}
+\label{sec:Solutions}
+
+\begin{enumerate}
+
+\item Using the usual notation, by the Briggs formula, we have: 
+$$
+	\sin \angle \frac{BAC}{2}=\sqrt{\frac{(p-b)(p-c)}{bc}}
+	\Rightarrow \sin \angle \frac{BAC}{2}=\frac{(p-c)}{c},
+$$
+hence
+$$
+	AI=\frac{r}{\sin \angle \frac{BAC}{2}}
+	\Rightarrow r=\frac{(a-c)(p-c)}{c}.
+$$
+Also,
+$$
+	r^2 = AI^2 - (p-a)^2 = (a-c)^2 - (p-a)^2 = \frac{3a^2}{4} - ac.
+$$
+This implies
+\begin{eqnarray}
+\left(\frac{(a-c)(p-c)}{c}\right)^2 = r^2 = \frac{3a^2}{4} - a \nonumber\\
+\Rightarrow 2(ac)^2 - 4ac^3 + 2ca^3 - a^4 = 0 \nonumber\\
+\Rightarrow a(a-2c)(a^2-2c^2) = 0. \nonumber\\
+\end{eqnarray}
+
+Since $a\not=0$ and $a<2c$, we must have $a^2=2c^2$,
+therefore $\angle BAC=90$.
+
+\item Let
+$$
+	F(x) = \sum_{m} f(m)x^m.
+$$
+
+Summing over $m$, we get:
+
+\begin{eqnarray}
+F(x) = \sum_{m}f(m) x^{m} = \sum_{m}\left(\sum_{k} \binom{2n + 1}{2k}\binom{m + k}{2n}\right) x^{m} = \nonumber\\
+\sum_{k} \binom{2n + 1}{2k} \left(\sum_{m}\binom{m + k}{2n} x^{m}\right) = \nonumber\\
+\frac{x^{2n}}{(1 - x)^{2n + 1}} \sum_{k}\binom{2n + 1}{2k}x^{-k}.
+\end{eqnarray}
+
+Now our problem reduces to finding $[x^{m}]F(x)$; for that,
+let $x = y^{2}$, so $[x^{m}]F(x) = [y^{2m}]F(y)$. Let's find $F(y^2)$:
+
+\begin{eqnarray}
+F(y^2) = \frac{y^{4n}}{(1 - y^2)^{2n + 1}} \sum_{k} \binom{2n + 1}{2k}y^{-2k} = \nonumber\\
+\frac{y^{4n}}{2(1 - y^2)^{2n + 1}}\left( \left(1 + \frac{1}{y}\right)^{2n + 1} + \left(1 - \frac{1}{y}\right)^{2n + 1} \right) = \nonumber\\
+\frac{y^{4n}}{2(1 - y^2)^{2n + 1}}\left(\frac{(1 + y)^{2n + 1}}{y^{2n + 1}} - \frac{(1 - y)^{2n + 1})}{y^{2n + 1}} \right) = \nonumber\\
+\frac{1}{2y}\left(\frac{y^{2n}}{(1 - y)^{2n + 1}} - \frac{y^{2n}}{(1 + y)^{2n + 1}}\right).
+\end{eqnarray}
+
+So,
+$
+	f(m) = [x^{m}]F(x) = [y^{2m}]F(y^2)
+	= \frac{1}{2}\left( \binom{2m + 1}{2n} - (-1)^{2m + 1}\binom{2m + 1}{2n} \right)
+	= \binom{2m + 1}{2n}.
+$
+
+\item So, by the power mean inequality we have
+$$
+	\left(1 + \frac{1}{x}\right)\left(1 + \frac{1}{y}\right)\left(1 + \frac{1}{z}\right)
+	\geq \left(\frac{3}{\frac{x}{1 + x} + \frac{y}{1 + y} + \frac{z}{1 + z}}\right)^{3}
+$$
+
+and, since the function $f(x) = \frac{x}{1 + x}$ is concave for $x$ a positive
+real number, by Jensen's inequality we have:
+
+\begin{eqnarray}
+\frac{1}{3}\left(\frac{x}{1 + x} + \frac{y}{1 + y} + \frac{z}{1 + z}\right) \leq \frac{\frac{x + y + z}{3}}{1 + \frac{x + y + z}{3}} = \frac{1}{4}\nonumber\\
+\Rightarrow \left(\frac{x}{1 + x} + \frac{y}{1 + y} + \frac{z}{1 + z}\right) \leq \frac{3}{4}
+\end{eqnarray}
+
+Therefore,
+$$
+	\left(1 + \frac{1}{x}\right)\left(1 + \frac{1}{y}\right)\left(1 + \frac{1}{z}\right) \geq
+	\left(\frac{3}{\frac{3}{4}}\right)^{3} = 64.
+$$
+
+\item Transforming, the inequality can be rewritten as
+\begin{eqnarray}
+27T[6, 0, 0] + 54T[3, 3, 0] \geq \nonumber\\
+\geq 2T[5, 1, 0] + 8T[4, 2, 0] + 9T[4, 1, 1] + \nonumber\\
+6T[3, 3, 0] + 44T[3, 2, 1] + 12T[2, 2, 2], \nonumber
+\end{eqnarray}
+
+which can be easily verified by repeatedly applying Muirhead's theorem.
+
+\item
+Let's suppose such $n$ exists; therefore there are integers
+$a, b$ with $a < b$ such that $n^2 + 1 = ab$, and
+$a - b = n$. We could say then that the following
+equation should have an integer solution in $n$:
+$$
+	n^2 + 1 = a(a - n) \Rightarrow n^2 +an - (a^2 - 1) = 0,
+$$
+so for it to have integer solutions in $n$ its discriminant
+must be a perfect square, i.e.:
+$$
+	a^2 + 4(a^2 - 1) = x^2 \Rightarrow x^2 - 5a^2 = -4.
+$$
+As a Pell equation with a minimal solution, $(1, 1)$, it
+has infinitely many solutions; which are given by the
+following formulas:
+$$
+	(x_{n + 1}, a_{n + 1}) = (9x_n + 20a_n, 4x_n + 9a_n).
+$$	
+So, for each $k \geq 0$ $a_k$ generates an $x_k$ that
+generates an $n_k$ by the following formulae:
+$$
+	n_k = \frac{x_k - a_k}{2}, b_k = a_k - n_k.
+$$
+
+\item
+First, let's prove the following recurrences:
+$x_{n + 1} = 2x_n + y_n$, and $y_{n + 1} = 3x_n + 2y_n$,
+both $\forall n \geq 0$.
+
+The first one is pretty straightforward through induction.
+The base cases $n = 0$ and $n = 1$ hold, so we can suppose
+the equality holds for every $k \leq n$. Using this, let's
+prove it for $n + 1$:
+
+$
+    y_{n + 1} = 4y_n - y_{n - 1} = 
+    4(x_{n + 1} - 2x_n) - (x_n - 2x_{n - 1}) =
+    (4x_{n + 1} - x_n) - (8x_n - 2x_{n - 1}) =
+    (4x_{n + 1} - x_n) - 2(4x_n - x_{n - 1}) =
+    x_{n + 2} - 2x_{n + 1},
+$
+so $x_{n + 2} = 2x_{n + 1} + y_{n + 1}$, as we claimed
+initially.
+
+For the second one, we'll use induction on $n$ again. The
+base cases also hold for $n = 0, n = 1$ in this case, and
+so we have:
+$
+    y_{n + 2} = 4y_{n + 1} - y_n = 
+    2y_{n + 1} + (2y_{n + 1} - y_n) =
+    2y_{n + 1} + (2(3x_n + 2y_n) - y_n) =
+    2y_{n + 1} + (6x_n + 4y_n - y_n) =
+    2y_{n + 1} + 3(2x_n + y_n) =
+    2y_{n + 1} + 3x_{n + 1},
+$
+hence our recurrences are proved.
+
+Now, to prove the statement, we see by using the above
+recurrencies that, $\forall n \geq 1$:
+$
+    y_n^2 - 3x_n^2 =
+    (3x_{n - 1} + 2y_{n - 1})^2 - 3(2x_{n - 1} + y_{n - 1})^2 =
+    (4 - 3)y_{n - 1}^2 + 12 x_{n - 1} y_{n - 1} -
+    12 x_{n - 1} y_{n - 1} + (9 - 12)x_{n - 1}^2 =
+    y_{n - 1}^2 - 3x_{n - 1}^2,
+$
+so we can say that
+$
+    y_n^2 - 3x_n^2 = y_{n - 1}^2 - 3x_{n - 1}^2 =
+    \cdots = y_1^2 - 3x_1^2 = y_0^2 - 3x_0^2 = 1,
+$
+as claimed.
+
+\end{enumerate}
+
+\end{document}
