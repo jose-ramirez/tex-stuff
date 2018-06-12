@@ -264,38 +264,45 @@ a_n^2 + a_{n + 1}^2 = \\
 \frac{1}{2\sqrt2}\bigl((1 + \sqrt{2})^{2n + 3} - (1 - \sqrt{2})^{2n + 3}\bigr) = a_{2n + 2}.
 \end{eqnarray*}
 
-\item The given equation can be rewritten as
+\item Let's try to find a more convenient expression for $x$ and $y$.
+
+The given equation can be rewritten as
 $$
 	3^x = y^2 - x^2 = (y - x)(y + x),
 $$
-
 so we must have that $ y - x = 3^a, y + x = 3^b$, for some $a, b$ with
 $a + b = x.$
 
 So, solving for $x$ and $y$ in this case yields
 $x = \frac{3^a(3^{b - a} - 1)}{2}, y = \frac{3^a(3^{b - a} + 1)}{2}.$
 
-Also, an apparently well known lemma tells us that $3^a > 2a + 1$ with equality
-iff $a = 0$.
-
-Now, from the expressions for both $x$ and $y$, we must have that
-$x = 3^ak,y = 3^a(k + 1)$ for some $k \geq 1$, and the initial
-equation can be rewritten as
+Now, from the expressions for both $x$ and $y$ (i.e., seeing that
+$\frac{(3^{b - a} - 1)}{2}$ and $\frac{(3^{b - a} + 1)}{2}$ are consecutive
+integers) we must have that $x = 3^ak,y = 3^a(k + 1)$ for some $k \geq 0$, and
+with this, the initial equation can be rewritten as
 $$
 	3^{3^ak} = 3^{2a}(2k + 1).
 $$
 
-If $a, k > 1$, by applying the lemma, then we have the following chain
+Now, we claim that the last equation can only have solutons if $k \leq 1.$
+For this, an apparently well known lemma tells us that $3^a \geq 2a + 1$ with
+equality iff $a \in \langle 0, 1 \rangle$.
+
+So, if $k > 1$, by applying the lemma, then we have the following chain
 of inequalities:
 $$
-	3^{3^ak} > 3^{(2a + 1)k} = 3^{2ak + k} > 3^{2a} 3^k > 3^{2a}(2k + 1),
+	3^{3^ak} \geq 3^{(2a + 1)k} = 3^{2ak + k} > 3^{2a} 3^k > 3^{2a}(2k + 1),
 $$
-and so, we must have $a, k <= 1.$ By using the values for $a, k$, we get
-the following solutions:
+and so, we must have $k <= 1.$ 
+
+$k = 0$ gives $x = 0$, which isn't what we're looking for. $k = 1$ leaves us
+with $3^{3^a} = 3^{2a + 1}$, or $3^a = 2a + 1$, resulting in $a = 0, 1$
+(by the lemma).
+
+Finally, using the values we found for $a, k$, we get the following solutions:
 \begin{eqnarray*}
-	(0, 0) \Rightarrow (0, 1) \\
-	(1, 0) \Rightarrow (1, 2) \\
-	(1, 1) \Rightarrow (3, 6) \\
+   (k, a) = (1, 0) \Rightarrow (x, y) = (1, 2)  \\
+   (k, a) = (1, 1) \Rightarrow (x, y) = (3, 6). \\
 \end{eqnarray*}
 
 \end{enumerate}
