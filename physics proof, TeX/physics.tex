@@ -1,52 +1,57 @@
-\documentclass[12pt]{minimal}
+\documentclass{article}
+\author{Jose Ramirez}
+\setlength{\parindent}{0pt}
+\pdfpagewidth 8.5in
+\pdfpageheight 11in
+\usepackage{amssymb}
 \usepackage{amsmath}
+\usepackage{parskip}
+\setlength{\parskip}{\baselineskip}
 \begin{document}
-	$F_1, F_2$ and $F_3$ are 3 force vectors such that $F_1 + F_2 + F_3 = 0$ and
-	$F_1 \times r_1 + F_2 \times r_2 + F_3 \times r_3 = 0$.
-	Then $F_1, F_2$ and $F_3$ are coplanar, i.e., there's a plane containing the
-	these vectors.
 
-	So, set $r_{ij} = r_i - r_j \forall i, j \in [1\mathrm{..}3], i < j $. There
-	is a plane $\pi$ containing these $r_{ij}$. 
 
-	So, we claim that $r_{23} \times F_3 = r_{12} \times F_1$.
+$F_1, F_2$ and $F_3$ are force vectors for whichs the following equalities hold:
+\begin{align*}
+	F_1 + F_2 + F_3 = 0, \\
+	F_1 \times r_1 + F_2 \times r_2 + F_3 \times r_3 = 0.
+\end{align*}
+Then $F_1, F_2$ and $F_3$ are coplanar, i.e., there's a plane containing these vectors.  
 
-	\begin{align*}
-		r_{23} \times F_3 = r_2 \times F_3 - r_3 \times F_3 = \\
-		r_2 \times F_3 + r_1 \times F_1 + r_2 \times F_2 = \\
-		r_2 \times (F_2 + F_3) + r_1 \times F_1 = \\
-		r_1 \times F_1 - r_2 \times F_1 = r_{12}\times F_1.
-	\end{align*}
 
-	So, we know the following:
+So, let's define $r_{ij} = r_i - r_j\ \forall i, j \in [1 \mathrm{ ... } 3], i < j $.
 
-	\begin{align*}
-		0 = (r_{23} - F_3) \cdot (r_{23} \times F_3) = \\
-		(r_{23} - F_3) \cdot (r_{12} \times F_1),
-	\end{align*}
+Let's prove some things first:
 
-	so, $r_{23} - F_3, r_{12}, F_1$ belong to a plane, call it $\pi_1$, and
+\begin{enumerate}
+\item $r_{23} \times F_3 = r_{12} \times F_1$.
+\begin{align*}
+	r_{23} \times F_3 = r_2 \times F_3 - r_3 \times F_3 = \\
+	r_2 \times F_3 + r_1 \times F_1 + r_2 \times F_2 = \\
+	r_2 \times (F_2 + F_3) + r_1 \times F_1 = \\
+	r_1 \times F_1 - r_2 \times F_1 = r_{12}\times F_1.
+\end{align*}
 
-	\begin{align*}
-		0 = r_{23} \cdot (r_{23} \times F_3) = \\
-		r_{23} \cdot (r_{12} \times F_1),
-	\end{align*}
+\item $r_{23} - F_3, r_{12}, F_1$ are coplanar.
+$$0 = (r_{23} - F_3) \cdot (r_{23} \times F_3) = (r_{23} - F_3) \cdot (r_{12} \times F_1),$$
+so the aforementioned vectors lie on some plane; let's call it $\pi_1.$
 
-	hence $r_{23}, r_{12}, F_1$ belong to a plane, call it $\pi_2$.
+\item $r_{23}, r_{12}, F_1$ are coplanar as well.
+$$0 = r_{23} \cdot (r_{23} \times F_3) = r_{23} \cdot (r_{12} \times F_1),$$
+so these vectors also lie on the same plane, let's call it $\pi_2.$
+\end{enumerate}
 
-	So, $\pi_1 = \pi_2$ since they share $F_1, r_{12}$.
+By items 2 and 3, $\pi_1 = \pi_2 = \pi$, since $\pi_1$ and $\pi_2$ have both
+$F_1$ and $r_{12}$ in common, which means that $r_{23}, (r_{23} - F_3)$ $\in \pi$,
+so, $r_{23} - (r_{23} - F_3) = F_3 \in \pi$, so $-F_3 - F_1 = F_2 \in \pi$ as well.
 
-	so, $r_{23} - (r_{23} - F_3) = F_3$ belongs to this common plane, and
-	hence  $-F_3 - F_1 = F_2$ as well.
+So, $F_1, F_2, F_3 \in \pi$, as needed.
 
-	So all force vectors belong to the same plane, as needed.
+If $F_1 \parallel F_3$, then $ F_2 = -(F_1 + F_3)$ is such that $F_2 \parallel F_3$.
 
-	If $F_1 \parallel F_3$, then $ F_2 = -(F_1 + F_3)$ is such that $F_2 \parallel F_3$.
+If not, then their supporting lines meet at a point, call it $P$. Choosing $P$ as
+a new origin, we get that $r_1 \times F_1 = r_3 \times F_3 = 0$, which implies
+$r_2 \times F_2 = 0$ as well.
 
-	If not, then their supporting lines meet at a point, call it $P$. Choosing $P$ as
-	a new origin, we get that $r_1 \times F_1 = r_3 \times F_3 = 0$, which implies
-	$r_2 \times F_2 = 0$ as well.
-
-	This means that $F_2$ lies on the supporting line of $r_2$, call it $l_2$, therefore
-	the supporting lines of the force vectors concur at $P$.
+This means that $F_2$ lies on the supporting line of $r_2$, call it $l_2$, therefore
+the supporting lines of the force vectors concur at $P$.
 \end{document}
